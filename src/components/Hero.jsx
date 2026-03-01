@@ -1,5 +1,5 @@
 import React from 'react';
-import BG from "/src/assets/BG.png"
+import BG from "../assets/bg.png"
 
 function Hero() {
   return (
