@@ -1,0 +1,130 @@
+/* Container */
+.learn-container {
+  background: #f5f7fb;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 30px auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Header */
+.learn-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.learn-header h2 {
+  flex: 1;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.play-icon {
+  background: #e0e7ff;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.menu {
+  color: #777;
+  font-size: 20px;
+}
+
+/* Grid Layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* Lesson Card */
+.lesson-card {
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  color: #1a1a1a;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lesson-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+}
+
+.lesson-card h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* Fake text lines */
+.lines span {
+  display: block;
+  height: 6px;
+  background: rgba(255,255,255,0.6);
+  margin: 8px auto;
+  border-radius: 5px;
+  width: 70%;
+}
+
+/* Button */
+.start-btn {
+  margin-top: 20px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.start-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Card Colors */
+.blue {
+  background: linear-gradient(180deg, #bfe6ff, #8ed0f5);
+}
+
+.sky {
+  background: linear-gradient(180deg, #b7e3ff, #7cc8f0);
+}
+
+.green {
+  background: linear-gradient(180deg, #c7f1c8, #8ddf91);
+}
+
+/* ========================= */
+/* ✅ RESPONSIVE DESIGN */
+/* ========================= */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .learn-container {
+    padding: 15px;
+  }
+
+  .lesson-card h3 {
+    font-size: 16px;
+  }
+
+  .start-btn {
+    width: 100%;
+  }
+}

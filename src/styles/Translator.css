@@ -1,0 +1,153 @@
+/* ===== Page Layout ===== */
+.page {
+  background: #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* ===== Logo ===== */
+.logo {
+  font-size: clamp(24px, 5vw, 32px);
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ===== Card ===== */
+.translator-card {
+  background: white;
+  width: 100%;
+  max-width: 650px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* ===== Header ===== */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* ===== Language Row ===== */
+.language-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.language-row select {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.swap {
+  font-size: 20px;
+  color: #666;
+}
+
+/* ===== Text Areas ===== */
+.text-area-row {
+  display: flex;
+  gap: 10px;
+}
+
+.text-area-row textarea {
+  flex: 1;
+  height: 130px;
+  resize: none;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* ===== Button ===== */
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.translate-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.translate-btn:hover {
+  background: #1d4ed8;
+}
+
+/* =====================================
+   📱 MOBILE RESPONSIVE (IMPORTANT)
+===================================== */
+
+@media (max-width: 768px) {
+
+  .translator-card {
+    padding: 12px;
+  }
+
+  /* Stack language dropdowns */
+  .language-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .swap {
+    text-align: center;
+    transform: rotate(90deg);
+  }
+
+  /* Stack textareas vertically */
+  .text-area-row {
+    flex-direction: column;
+  }
+
+  .text-area-row textarea {
+    width: 100%;
+    height: 120px;
+  }
+
+  /* Center button */
+  .btn-container {
+    justify-content: center;
+  }
+
+  .translate-btn {
+    width: 100%;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 400px) {
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .text-area-row textarea {
+    height: 100px;
+    font-size: 13px;
+  }
+}
