@@ -3,6 +3,9 @@ import "/src/styles/G2.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
+const API = import.meta.env.VITE_API_URL;
+
+
 export default function G2() {
 
   const [messages, setMessages] = useState([
@@ -28,7 +31,7 @@ export default function G2() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/chatbot/message",
+        `${API}/getResponse`,
         {
           method: "POST",
           headers: {

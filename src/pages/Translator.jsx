@@ -4,6 +4,8 @@ import "../styles/Translator.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
+const API = import.meta.env.VITE_API_URL;
+
 function Translator() {
 
   /* ---------- STATES ---------- */
@@ -30,42 +32,45 @@ function Translator() {
   /* ---------- TRANSLATE ---------- */
 
   const handleTranslate = async () => {
-    if (!inputText.trim()) return;
+  if (!inputText.trim()) return;
 
-    if (sourceLang === targetLang) {
-      setTranslatedText(inputText);
-      return;
+  if (sourceLang === targetLang) {
+    setTranslatedText(inputText);
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const response = await fetch(`${API}/translate`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text: inputText,
+        from: sourceLang,
+        to: targetLang,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("API request failed");
     }
 
-    try {
-      setLoading(true);
+    const data = await response.json();
 
-      const response = await fetch(
-        "http://localhost:5000/api/translate",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            text: inputText,
-            from: sourceLang,
-            to: targetLang,
-          }),
-        }
-      );
+    setTranslatedText(
+      data.translation || data.reply || "Not found"
+    );
 
-      const data = await response.json();
-      setTranslatedText(data.text || "Not found");
-
-    } catch (error) {
-      console.error(error);
-      setTranslatedText("Translation failed");
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  } catch (error) {
+    console.error(error);
+    setTranslatedText("Translation failed");
+  } finally {
+    setLoading(false);
+  }
+};
   /* ---------- UI ---------- */
 
   return (
