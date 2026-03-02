@@ -9,7 +9,7 @@ function FeatureCard({ icon, title, description, link }) {
       <div className="icon">{icon}</div>
       <h3>{title}</h3>
       <p>{description}</p>
-      <button onClick={() => navigate(link)}>Learn More</button>
+      <button onClick={() => navigate(link)}>Start Now</button>
     </div>
   );
 }

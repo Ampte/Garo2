@@ -23,6 +23,7 @@ export default function Learn() {
     <>
     <Navbar/>
     <div className="learn-container">
+      <h1 style={{textAlign: 'center'}}>Not yet available</h1>
       <div className="learn-header">
         <span className="play-icon">▶</span>
         <h2>Learn</h2>
