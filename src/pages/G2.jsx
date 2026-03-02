@@ -22,46 +22,41 @@ export default function G2() {
 
   /* ---------- SEND MESSAGE ---------- */
   const sendMessage = async () => {
-    if (!input.trim()) return;
+  if (!input.trim()) return;
 
-    const userMessage = { text: input, sender: "user" };
+  const userMessage = { text: input, sender: "user" };
+  setMessages(prev => [...prev, userMessage]);
+  setInput("");
 
-    setMessages(prev => [...prev, userMessage]);
-    setInput("");
+  try {
+    const response = await fetch(`${API}/getResponse`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ input }),
+    });
 
-    try {
-      const response = await fetch(
-        `${API}/getResponse`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            message: input,
-          }),
-        }
-      );
-
-      const data = await response.json();
-
-      const botMessage = {
-        text: data.reply,
-        sender: "bot",
-      };
-
-      setMessages(prev => [...prev, botMessage]);
-
-    } catch (error) {
-      console.error(error);
-
-      setMessages(prev => [
-        ...prev,
-        { text: "Server not responding.", sender: "bot" },
-      ]);
+    if (!response.ok) {
+      throw new Error("API failed");
     }
-  };
 
+    const data = await response.json();
+
+    setMessages(prev => [
+      ...prev,
+      { text: data.reply, sender: "bot" }
+    ]);
+
+  } catch (error) {
+    console.error("FETCH ERROR:", error);
+
+    setMessages(prev => [
+      ...prev,
+      { text: "Server not responding.", sender: "bot" },
+    ]);
+  }
+};
   /* ---------- ENTER KEY ---------- */
   const handleKeyPress = (e) => {
     if (e.key === "Enter") sendMessage();
